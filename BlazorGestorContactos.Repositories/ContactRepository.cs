@@ -53,7 +53,7 @@ namespace BlazorGestorContactos.Repositories
                     contact.Nombre,
                     contact.Apellido,
                     contact.Telefono,
-                    contact.Direcion
+                    contact.Direccion
                 });
 
                 return result > 0;
@@ -80,7 +80,7 @@ namespace BlazorGestorContactos.Repositories
                     contact.Nombre,
                     contact.Apellido,
                     contact.Telefono,
-                    contact.Direcion,
+                    contact.Direccion,
                     contact.Id
                 });
 
