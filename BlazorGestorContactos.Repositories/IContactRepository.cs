@@ -12,7 +12,7 @@ namespace BlazorGestorContactos.Repositories
         Task<bool> InsertContact(Contact contact);
         Task<bool> UpdatetContact(Contact contact);
         Task DeleteContact(int id);
-        Task<IEnumerable<Contact>> GetAll(Contact contact);
+        Task<IEnumerable<Contact>> GetAll();
         Task<Contact> GetContact(int id);
 
     }
