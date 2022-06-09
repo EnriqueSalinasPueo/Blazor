@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace BlazorGestorContactos.Server
@@ -16,7 +18,7 @@ namespace BlazorGestorContactos.Server
         {
             Configuration = configuration;
         }
-
+        // Este objeto esta hecho para poder leer las configuraciones del appsettings.json
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -26,6 +28,9 @@ namespace BlazorGestorContactos.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Añadimos al contenedor de dependencias la conexion 
+            services.AddSingleton<IDbConnection>((sp) => new SqlConnection(this.Configuration.GetConnectionString("StringConnection")));
 
             // Añadimos al contenedor de dependencias la clase que repository que creemos  
             // De esta forma podemos acceder siempre una clase Repositiry, cuando a la aplicacion le ahaga falta

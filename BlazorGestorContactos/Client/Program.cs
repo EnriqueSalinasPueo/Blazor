@@ -20,7 +20,6 @@ namespace BlazorGestorContactos.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-
             // Añadimos al contenedor de dependencias las clases de Service que creamos  
             builder.Services.AddScoped<IContactService, ContactService>();
 

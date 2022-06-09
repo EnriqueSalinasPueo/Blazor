@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorGestorContactos\Shared\BlazorGestorContactos.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
