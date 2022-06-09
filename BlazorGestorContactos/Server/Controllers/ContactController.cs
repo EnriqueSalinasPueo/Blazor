@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 // Creamos un controlador que se encargara de llamar al repositorio
 namespace BlazorGestorContactos.Server.Controllers
 {
+    // URL "api/Contact
     [Route("api/[controller]")]
     [ApiController]
     public class ContactController : ControllerBase
