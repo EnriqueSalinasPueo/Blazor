@@ -10,54 +10,109 @@
     <p><em>Loading...</em></p>}
 else
 {
-    <EditForm Model="contact" OnInvalidSubmit="Save">
+    <RadzenTemplateForm Data="@contact">
         <div class="card">
             <h5 class="card-header">Contacto</h5>
             <div class="card-body">
                 <div class="container">
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="">Nombre</label>
-                            <InputText class="form-control" @bind-Value="@contact.Nombre"></InputText>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="">Apellido</label>
-                            <InputText class="form-control" @bind-Value="@contact.Apellido"></InputText>
-                        </div>
-                    </div>
+                    <RadzenFieldset Text="Detalle contacto">
 
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="">Telefono</label>
-                            <InputText class="form-control" @bind-Value="@contact.Telefono"></InputText>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="">Nombre</label>
+                                <RadzenTextBox class="form-control" @bind-Value="@contact.Nombre"></RadzenTextBox>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Apellido</label>
+                                <RadzenTextBox class="form-control" @bind-Value="@contact.Apellido"></RadzenTextBox>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="">Direccion</label>
-                            <InputTextArea class="form-control" @bind-Value="@contact.Direccion"></InputTextArea>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Telefono</label>
+                                <RadzenTextBox class="form-control" @bind-Value="@contact.Telefono"></RadzenTextBox>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Direccion</label>
+                                <RadzenTextArea class="form-control" @bind-Value="@contact.Direccion"></RadzenTextArea>
+                            </div>
+                        </div>
 
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <input type="submit" class="btn btn-success" value="Save" @onclick="Save" />
-                            <input type="button" class="btn btn-secondary" value="Cancel" @onclick="NavigateHome" />
-                        </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
 
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <RadzenButton Text="Save" ButtonStyle="ButtonStyle.Primary" Click="@(args => Save())" />
+                                <RadzenButton Text="Cancel" ButtonStyle="ButtonStyle.Secondary" Click="@(args => NavigateHome())" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+
+                            </div>
                         </div>
-                    </div>
+
+                    </RadzenFieldset>
 
                 </div>
             </div>
         </div>
-    </EditForm>
+    </RadzenTemplateForm>
+
+
+
+    @*<EditForm Model="contact" OnInvalidSubmit="Save">
+            <div class="card">
+                <h5 class="card-header">Contacto</h5>
+                <div class="card-body">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="">Nombre</label>
+                                <InputText class="form-control" @bind-Value="@contact.Nombre"></InputText>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Apellido</label>
+                                <InputText class="form-control" @bind-Value="@contact.Apellido"></InputText>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Telefono</label>
+                                <InputText class="form-control" @bind-Value="@contact.Telefono"></InputText>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Direccion</label>
+                                <InputTextArea class="form-control" @bind-Value="@contact.Direccion"></InputTextArea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="submit" class="btn btn-success" value="Save" @onclick="Save" />
+                                <input type="button" class="btn btn-secondary" value="Cancel" @onclick="NavigateHome" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </EditForm>*@
 }
 
 

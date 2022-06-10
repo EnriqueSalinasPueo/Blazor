@@ -21,29 +21,57 @@
 }
 else
 {
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Telefono</th>
-            <th>Direccion</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var contact in contacts)
-        {
-        <tr>
-            <td>@contact.Nombre</td>
-            <td>@contact.Telefono</td>
-            <td>@contact.Direccion</td>
-            <td><a href="/contactdetails/@contact.Id">Editar</a></td>
-            <td><a href="/contactdelete/@contact.Id">Borrar</a></td>
-        </tr>
-        }
-    </tbody>
-</table>
+    <RadzenGrid AllowFiltering="true"
+                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                FilterMode="FilterMode.Advanced"
+                AllowPaging="true"
+                PageSize="4"
+                AllowSorting="true"
+                Data="@contacts"
+                TItem="Contact"
+                ColumnWidth="200px">
+        <Columns>
+            <RadzenGridColumn TItem="Contact" Property="Nombre" Title="Nombre" />
+            <RadzenGridColumn TItem="Contact" Property="Telefono" Title="Telefono" />
+            <RadzenGridColumn TItem="Contact" Property="Direccion" Title="Direccion" />
+            <RadzenGridColumn TItem="Contact" Title="Editar">
+                <Template Context="data">
+                    <RadzenLink Path="@($"/contactdetails/{data.Id}")" Text="Editar"></RadzenLink>
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Contact" Title="Borrar">
+                <Template Context="data">
+                    <RadzenLink Path="@($"/contactdelete/{data.Id}")" Text="Borrar"></RadzenLink>
+                </Template>
+            </RadzenGridColumn>
+
+        </Columns>
+    </RadzenGrid>
+
+
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in contacts)
+                {
+                <tr>
+                    <td>@contact.Nombre</td>
+                    <td>@contact.Telefono</td>
+                    <td>@contact.Direccion</td>
+                    <td><a href="/contactdetails/@contact.Id">Editar</a></td>
+                    <td><a href="/contactdelete/@contact.Id">Borrar</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>*@
 }
 
 @code {
