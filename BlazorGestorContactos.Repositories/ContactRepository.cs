@@ -3,8 +3,6 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 // El repositoio es el acceso a datos de la app 
@@ -30,14 +28,16 @@ namespace BlazorGestorContactos.Repositories
 
         public async Task<IEnumerable<Contact>> GetAll()
         {
-            var sql = @"SELELCT * FROM Contact";
+            var sql = @"SELECT * FROM Contact";
 
-            return await _dbConnetion.QueryAsync<Contact>(sql, new { });
+            IEnumerable<Contact> result = await _dbConnetion.QueryAsync<Contact>(sql, new { });
+
+            return result;
         }
 
         public async Task<Contact> GetContact(int id)
         {
-            var sql = @"SELELCT * FROM Contact WHERE Id = @Id";
+            var sql = @"SELECT * FROM Contact WHERE Id = @Id";
 
             return await _dbConnetion.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
         }
@@ -46,8 +46,8 @@ namespace BlazorGestorContactos.Repositories
         {
             try
             {
-                var sql = @"INSERT INTO Contact(Nombre, Apellidos, Telefono, Direccion)
-                            VALUES(@Nombre, @Apellidos, @Telefono, @Direccion) ";
+                var sql = @"INSERT INTO Contact(Nombre, Apellido, Telefono, Direccion)
+                            VALUES(@Nombre, @Apellido, @Telefono, @Direccion) ";
                 var result = await _dbConnetion.ExecuteAsync(sql, new
                 {
                     contact.Nombre,
@@ -71,7 +71,7 @@ namespace BlazorGestorContactos.Repositories
             {
                 var sql = @"UPDATE Contact
                             SET Nombre = @Nombre, 
-                                Apellidos = @Apellidos, 
+                                Apellido = @Apellido, 
                                 Telefono = @Telefono, 
                                 Direccion = @Direccion)
                                 WHERE Id = @Id ";

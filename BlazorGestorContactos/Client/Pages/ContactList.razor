@@ -1,0 +1,58 @@
+﻿@page "/"
+
+@inject IContactService ContactService
+@inject NavigationManager NavigationManager
+
+<h3>Contactos</h3>
+
+@Message
+
+@if (contacts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in contacts)
+        {
+            <tr>
+                <td>@contact.Nombre</td>
+                <td>@contact.Telefono</td>
+                <td>@contact.Direccion</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    // Cargmaos la lista de contactos con lo que hay een base de datos
+    IEnumerable<Contact> contacts;
+    public string Message { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            contacts = await ContactService.GetAll();
+        }
+        catch (Exception e)
+        {
+            Message = "Error --> " + e.Message;
+        }
+    }
+
+}

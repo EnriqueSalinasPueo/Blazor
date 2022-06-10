@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 // Creamos un controlador que se encargara de llamar al repositorio
 namespace BlazorGestorContactos.Server.Controllers
 {
-    // URL "api/Contact
+    // URL "api/Contact"
     [Route("api/[controller]")]
     [ApiController]
     public class ContactController : ControllerBase
@@ -74,7 +74,9 @@ namespace BlazorGestorContactos.Server.Controllers
         [HttpGet]
         public async Task<IEnumerable<Contact>> Get()
         {
-            return await _contactRepository.GetAll();
+           IEnumerable<Contact> result = await _contactRepository.GetAll();
+
+            return result;
         }
 
         [HttpGet("{id}")]

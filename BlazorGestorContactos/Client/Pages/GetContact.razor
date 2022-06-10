@@ -1,7 +1,5 @@
 ﻿@page "/contactdetails"
 
-@using Services
-@using BlazorGestorContactos.Shared
 
 @inject IContactService ContactService
 @inject NavigationManager NavigationManager
@@ -47,7 +45,7 @@ else
 
                         </div>
                         <div class="col-md-4 mb-3">
-                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="submit" class="btn btn-success" value="Save" @onclick="Save" />
                             <input type="button" class="btn btn-secondary" value="Cancel" @onclick="NavigateHome"/>
                         </div>
                         <div class="col-md-4 mb-3">

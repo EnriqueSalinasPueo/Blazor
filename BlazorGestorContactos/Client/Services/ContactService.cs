@@ -1,7 +1,5 @@
 ﻿using BlazorGestorContactos.Shared;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -26,7 +24,9 @@ namespace BlazorGestorContactos.Client.Services
         public async Task<IEnumerable<Contact>> GetAll()
         {
             // Este metodo deserializa un Json para poder mandarlo al controlador como objeto o en este caso lista de objetos
-            return await _httpClient.GetFromJsonAsync<IEnumerable<Contact>>($"api/contact");
+            IEnumerable<Contact> result = await _httpClient.GetFromJsonAsync<IEnumerable<Contact>>($"api/contact");
+
+            return result;
         }
 
         public async Task<Contact> GetContact(int id)
