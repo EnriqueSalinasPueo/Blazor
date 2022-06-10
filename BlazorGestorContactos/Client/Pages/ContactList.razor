@@ -7,6 +7,14 @@
 
 @Message
 
+<table class="table">
+    <tbody>
+        <tr>
+            <td colpa="2"><a href="/contactdetails">Añadir nuevo contacto</a></td>
+        </tr>
+    </tbody>
+</table>
+
 @if (contacts == null)
 {
     <p><em>Loading...</em></p>
@@ -26,13 +34,13 @@ else
     <tbody>
         @foreach (var contact in contacts)
         {
-            <tr>
-                <td>@contact.Nombre</td>
-                <td>@contact.Telefono</td>
-                <td>@contact.Direccion</td>
-                <td></td>
-                <td></td>
-            </tr>
+        <tr>
+            <td>@contact.Nombre</td>
+            <td>@contact.Telefono</td>
+            <td>@contact.Direccion</td>
+            <td><a href="/contactdetails/@contact.Id">Editar</a></td>
+            <td><a href="/contactdelete/@contact.Id">Borrar</a></td>
+        </tr>
         }
     </tbody>
 </table>

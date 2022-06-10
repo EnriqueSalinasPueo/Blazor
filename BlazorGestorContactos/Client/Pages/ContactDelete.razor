@@ -1,0 +1,87 @@
+﻿
+@page "/contactdelete/{id:int}"
+
+
+@inject IContactService ContactService
+@inject NavigationManager NavigationManager
+
+@if (contact == null)
+{
+    <p><em>Loading...</em></p>}
+else
+{
+    <EditForm Model="contact" OnInvalidSubmit="Delete">
+        <div class="card">
+            <h5 class="card-header">Contacto</h5>
+            <div class="card-body">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="">Nombre</label>
+                            <InputText class="form-control" @bind-Value="@contact.Nombre"></InputText>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="">Apellido</label>
+                            <InputText class="form-control" @bind-Value="@contact.Apellido"></InputText>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="">Telefono</label>
+                            <InputText class="form-control" @bind-Value="@contact.Telefono"></InputText>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="">Direccion</label>
+                            <InputTextArea class="form-control" @bind-Value="@contact.Direccion"></InputTextArea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="submit" class="btn btn-danger" value="Delete" @onclick="Delete" />
+                            <input type="button" class="btn btn-secondary" value="Cancel" @onclick="NavigateHome" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
+
+
+@code {
+
+    public Contact contact;
+    [Parameter]
+    public int id { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        contact = await ContactService.GetContact(id);
+
+    }
+
+    protected async Task Delete()
+    {
+        await ContactService.DeleteContact(id);
+        NavigateHome();
+    }
+
+
+    private void NavigateHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
